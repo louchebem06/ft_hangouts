@@ -42,18 +42,17 @@ public class CreateContactActivity extends AppCompatActivity {
 		nameInput = findViewById(R.id.nameInput);
 
 		saveBtn.setOnClickListener(new View.OnClickListener() {
-			@SuppressLint("WorldWriteableFiles")
 			@Override
 			public void onClick(View view) {
 				Contact contact = new Contact();
 				contact.setFirstName(nameInput.getText().toString());
-
-				writeContact(contact.getFirstName(), "+33650489457");
+				contact.setPhone("+33650489457");
+				writeContact(contact);
 			}
 		});
 	}
 
-	private void writeContact(String name, String number) {
+	private void writeContact(Contact contact) {
 		ArrayList < ContentProviderOperation > ops = new ArrayList < ContentProviderOperation > ();
 
 		ops.add(ContentProviderOperation.newInsert(
@@ -63,7 +62,7 @@ public class CreateContactActivity extends AppCompatActivity {
 				.build());
 
 		//------------------------------------------------------ Names
-		if (name != null) {
+		if (contact.getFirstName() != null) {
 			ops.add(ContentProviderOperation.newInsert(
 							ContactsContract.Data.CONTENT_URI)
 					.withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
@@ -71,17 +70,17 @@ public class CreateContactActivity extends AppCompatActivity {
 							ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
 					.withValue(
 							ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
-							name).build());
+							contact.getFirstName()).build());
 		}
 
 		//------------------------------------------------------ Mobile Number
-		if (number != null) {
+		if (contact.getPhone() != null) {
 			ops.add(ContentProviderOperation.
 					newInsert(ContactsContract.Data.CONTENT_URI)
 					.withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
 					.withValue(ContactsContract.Data.MIMETYPE,
 							ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
-					.withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, number)
+					.withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, contact.getPhone())
 					.withValue(ContactsContract.CommonDataKinds.Phone.TYPE,
 							ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
 					.build());

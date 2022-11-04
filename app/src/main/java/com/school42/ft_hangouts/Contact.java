@@ -13,4 +13,6 @@ public class Contact {
 
 	public void setFirstName(String firstName) { _firstName = firstName; }
 	public String getFirstName() { return (_firstName); }
+	public void setPhone(String phone) { _phone = phone; }
+	public String getPhone() { return (_phone); }
 }
