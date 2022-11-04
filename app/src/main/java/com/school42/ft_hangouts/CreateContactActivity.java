@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.net.URI;
@@ -48,8 +49,6 @@ public class CreateContactActivity extends AppCompatActivity {
 				contact.setFirstName(nameInput.getText().toString());
 
 				writeContact(contact.getFirstName(), "+33650489457");
-
-				finish();
 			}
 		});
 	}
@@ -139,8 +138,11 @@ public class CreateContactActivity extends AppCompatActivity {
 		// Asking the Contact provider to create a new contact
 		try {
 			getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+			Snackbar ok = Snackbar.make(findViewById(R.id.CreateContactLayout), "Contact create", 1000);
+			ok.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			Snackbar error = Snackbar.make(findViewById(R.id.CreateContactLayout), "Error create contact", 1000);
+			error.show();
 		}
 	}
 
