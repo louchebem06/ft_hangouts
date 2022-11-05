@@ -19,5 +19,14 @@
         app:srcCompat="@android:drawable/ic_input_add"
         android:backgroundTint="@color/purple_500" />
 
+    <ListView
+        android:id="@+id/listContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
