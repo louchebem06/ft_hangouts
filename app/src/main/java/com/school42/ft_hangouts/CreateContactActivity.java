@@ -66,6 +66,7 @@ public class CreateContactActivity extends AppCompatActivity {
 				surName.setText("");
 				mail.setText("");
 				phone.setText("");
+				finish();
 			} else {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
 									"Create contact fail",

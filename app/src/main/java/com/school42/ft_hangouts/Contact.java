@@ -106,17 +106,16 @@ public class Contact {
 		return (count > 0);
 	}
 
-	public boolean delete(Context context) {
+	public void delete(Context context) {
 		if (getId() == null)
-			return (false);
+			return ;
 		MainActivity.removeContact(this);
 		ContactReaderDbHelper dbHelper = new ContactReaderDbHelper(context);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 		String selection = ContactEntry._ID + " LIKE ?";
 		String[] selectionArgs = { getId() };
-		int deletedRows = db.delete(ContactEntry.TABLE_NAME, selection, selectionArgs);
-		return (deletedRows > 0);
+		db.delete(ContactEntry.TABLE_NAME, selection, selectionArgs);
 	}
 
 }

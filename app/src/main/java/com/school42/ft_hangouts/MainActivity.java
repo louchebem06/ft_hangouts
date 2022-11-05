@@ -2,6 +2,7 @@ package com.school42.ft_hangouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,8 +19,8 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity {
 
 	static final private Vector<Contact> contacts = new Vector<>();
-	static private ListView listContact;
-	static private ContactAdapter contactAdapter;
+	@SuppressLint("StaticFieldLeak")
+	static private ContactAdapter contactAdapter = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 		createContactBtn();
 		readDB();
 
-		listContact = findViewById(R.id.listContact);
+		ListView listContact = findViewById(R.id.listContact);
 		contactAdapter = new ContactAdapter(this, contacts);
 		listContact.setAdapter(contactAdapter);
 	}

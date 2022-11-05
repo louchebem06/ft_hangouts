@@ -5,9 +5,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,16 +39,16 @@ public class ContactAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int i) { return 0; }
 
-	@SuppressLint("ViewHolder")
+	@SuppressLint({"ViewHolder", "InflateParams"})
 	@Override
 	public View getView(int i, View view, ViewGroup viewGroup) {
 		view = _inflater.inflate(R.layout.adapter_contact, null);
 
 		Contact current = getItem(i);
-		String fullname = !current.getSurname().isEmpty() ? current.getSurname() : current.getFullName();
+		String fullName = !current.getSurname().isEmpty() ? current.getSurname() : current.getFullName();
 
-		TextView fullnameText = view.findViewById(R.id.fullname);
-		fullnameText.setText(fullname);
+		TextView fullNameText = view.findViewById(R.id.fullname);
+		fullNameText.setText(fullName);
 
 		ImageButton delete = view.findViewById(R.id.delete);
 		ImageButton msg = view.findViewById(R.id.sms);
@@ -59,7 +58,7 @@ public class ContactAdapter extends BaseAdapter {
 		delete.setOnClickListener(new DeleteListener(current));
 		msg.setOnClickListener(new MsgListener());
 		call.setOnClickListener(new CallListener(current));
-		edit.setOnClickListener(new EditListener());
+		edit.setOnClickListener(new EditListener(current));
 
 		return (view);
 	}
@@ -93,17 +92,28 @@ public class ContactAdapter extends BaseAdapter {
 		}
 	}
 
-	static class EditListener implements View.OnClickListener {
+	class EditListener implements View.OnClickListener {
+		private final Contact current;
+
+		EditListener(Contact contact) { current = contact; }
+
 		@Override
 		public void onClick(View view) {
-
+			EditContactActivity.setContact(current);
+			// TODO EditContactActivity
+			Intent Edit = new Intent(_context, EditContactActivity.class);
+			try {
+				_context.startActivity(Edit);
+			} catch (Exception e) {
+				Log.e("42", e.getMessage());
+			}
 		}
 	}
 
 	static class MsgListener implements View.OnClickListener {
 		@Override
 		public void onClick(View view) {
-
+			Log.e("42", "Button Msg");
 		}
 	}
 
