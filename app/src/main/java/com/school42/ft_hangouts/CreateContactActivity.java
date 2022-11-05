@@ -57,10 +57,20 @@ public class CreateContactActivity extends AppCompatActivity {
 
 			boolean state = contact.insert(getApplicationContext());
 
-			Snackbar.make(findViewById(R.id.CreateContactLayout),
-						(state ? "Contact create" : "Create contact fail"),
-						1000)
-						.show();
+			if (state) {
+				Snackbar.make(findViewById(R.id.CreateContactLayout),
+								"Contact create",
+								2000).show();
+				firstName.setText("");
+				lastName.setText("");
+				surName.setText("");
+				mail.setText("");
+				phone.setText("");
+			} else {
+				Snackbar.make(findViewById(R.id.CreateContactLayout),
+									"Create contact fail",
+									2000).show();
+			}
 		}
 	}
 
