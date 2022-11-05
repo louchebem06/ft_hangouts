@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.school42.ft_hangouts.database.ContactReaderDbHelper;
@@ -18,6 +18,8 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity {
 
 	static final private Vector<Contact> contacts = new Vector<>();
+	static private ListView listContact;
+	static private ContactAdapter contactAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
 		createContactBtn();
 		readDB();
+
+		listContact = findViewById(R.id.listContact);
+		contactAdapter = new ContactAdapter(this, contacts);
+		listContact.setAdapter(contactAdapter);
 	}
 
 	private void createContactBtn() {
@@ -54,12 +60,12 @@ public class MainActivity extends AppCompatActivity {
 				break ;
 			}
 		}
-		Log.e("42", "Remove\n" + contact.toString());
+		contactAdapter.notifyDataSetChanged();
 	}
 
 	static public void insertContact(Contact contact) {
 		contacts.add(contact);
-		Log.e("42", "Insert\n" + contact.toString());
+		contactAdapter.notifyDataSetChanged();
 	}
 
 	private void readDB() {
@@ -88,9 +94,6 @@ public class MainActivity extends AppCompatActivity {
 			contacts.add(contact);
 		}
 		cursor.close();
-
-		for (Contact contact : contacts)
-			Log.e("42", contact.toString());
 	}
 
 }

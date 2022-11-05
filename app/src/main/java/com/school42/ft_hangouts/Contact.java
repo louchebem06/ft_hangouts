@@ -56,6 +56,7 @@ public class Contact {
 	public String getSurname() { return (_surname); }
 	public String getMail() { return (_mail); }
 	public String getPhone() { return (_phone); }
+	public String getFullName() { return (getFirstName() + " " + getLastName()); }
 
 	public boolean isValid() { return (!(getFirstName().isEmpty()) && !(getPhone().isEmpty())); }
 
