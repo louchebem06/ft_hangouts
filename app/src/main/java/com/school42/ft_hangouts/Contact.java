@@ -3,6 +3,7 @@ package com.school42.ft_hangouts;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -11,7 +12,7 @@ import com.school42.ft_hangouts.database.ContactReaderDbHelper;
 
 public class Contact {
 
-	private String _id;
+	private String _id = null;
 	private String _firstName;
 	private String _lastName;
 	private String _surname;
@@ -95,7 +96,7 @@ public class Contact {
 		values.put(ContactEntry.COLUMN_NAME_PHONE, getPhone());
 
 		String selection = ContactEntry._ID + " LIKE ?";
-		String[] selectionArgs = { getId() };
+		String [] selectionArgs = { getId() };
 
 		int count = db.update(
 				ContactEntry.TABLE_NAME,

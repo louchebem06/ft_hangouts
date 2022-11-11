@@ -7,9 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class EditContactActivity extends AppCompatActivity {
+
+	private static Contact _contact = null;
 
 	private Button saveBtn;
 	private TextInputEditText firstName;
@@ -17,7 +20,6 @@ public class EditContactActivity extends AppCompatActivity {
 	private TextInputEditText surName;
 	private TextInputEditText mail;
 	private TextInputEditText phone;
-	static private Contact currentContact = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class EditContactActivity extends AppCompatActivity {
 		saveBtn.setOnClickListener(new BtnEvent());
 	}
 
-	static public void setContact(Contact contact) { currentContact = contact; }
+	public static void setContact(Contact contact) { _contact = contact; }
 
 	private void getElements() {
 		saveBtn = findViewById(R.id.saveBtn);
@@ -42,54 +44,55 @@ public class EditContactActivity extends AppCompatActivity {
 	}
 
 	private void setElements() {
-		if (currentContact == null)
+		if (_contact == null)
 			return ;
-		firstName.setText(currentContact.getFirstName());
-		lastName.setText(currentContact.getLastName());
-		surName.setText(currentContact.getSurname());
-		mail.setText(currentContact.getMail());
-		phone.setText(currentContact.getPhone());
+		if (_contact.getFirstName() != null)
+			firstName.setText(_contact.getFirstName());
+		if (_contact.getLastName() != null)
+			lastName.setText(_contact.getLastName());
+		if (_contact.getSurname() != null)
+			surName.setText(_contact.getSurname());
+		if (_contact.getMail() != null)
+			mail.setText(_contact.getMail());
+		if (_contact.getPhone() != null)
+			phone.setText(_contact.getPhone());
 	}
 
-	static class BtnEvent implements View.OnClickListener {
+	class BtnEvent implements View.OnClickListener {
 		@Override
 		public void onClick(View view) {
-			Log.e("42", "Click Event");
-			/*
-			* TODO Write this function for update
-			* */
-//			Contact contact = new Contact();
-//
-//			contact.setFirstName(String.valueOf(firstName.getText()));
-//			contact.setLastName(String.valueOf(lastName.getText()));
-//			contact.setSurname(String.valueOf(surName.getText()));
-//			contact.setMail(String.valueOf(mail.getText()));
-//			contact.setPhone(String.valueOf(phone.getText()));
-//
-//			if (!contact.isValid()) {
-//				Snackbar.make(findViewById(R.id.CreateContactLayout),
-//						"Please input firstname and phone",
-//						1000).show();
-//				return ;
-//			}
-//
-//			boolean state = contact.insert(getApplicationContext());
-//
-//			if (state) {
-//				Snackbar.make(findViewById(R.id.CreateContactLayout),
-//						"Contact create",
-//						2000).show();
-//				firstName.setText("");
-//				lastName.setText("");
-//				surName.setText("");
-//				mail.setText("");
-//				phone.setText("");
-//				finish();
-//			} else {
-//				Snackbar.make(findViewById(R.id.CreateContactLayout),
-//						"Create contact fail",
-//						2000).show();
-//			}
+			Contact contact = _contact;
+
+			contact.setFirstName(String.valueOf(firstName.getText()));
+			contact.setLastName(String.valueOf(lastName.getText()));
+			contact.setSurname(String.valueOf(surName.getText()));
+			contact.setMail(String.valueOf(mail.getText()));
+			contact.setPhone(String.valueOf(phone.getText()));
+
+			if (!contact.isValid()) {
+				Snackbar.make(findViewById(R.id.CreateContactLayout),
+						"Please input firstname and phone",
+						1000).show();
+				return ;
+			}
+
+			boolean state = contact.update(getApplicationContext());
+
+			if (state) {
+				Snackbar.make(findViewById(R.id.CreateContactLayout),
+						"Contact update",
+						2000).show();
+				firstName.setText("");
+				lastName.setText("");
+				surName.setText("");
+				mail.setText("");
+				phone.setText("");
+				finish();
+			} else {
+				Snackbar.make(findViewById(R.id.CreateContactLayout),
+						"Update contact fail",
+						2000).show();
+			}
 		}
 	}
 
