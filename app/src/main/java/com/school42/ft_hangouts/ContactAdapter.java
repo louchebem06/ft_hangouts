@@ -100,7 +100,6 @@ public class ContactAdapter extends BaseAdapter {
 		@Override
 		public void onClick(View view) {
 			EditContactActivity.setContact(current);
-			// TODO EditContactActivity
 			Intent Edit = new Intent(_context, EditContactActivity.class);
 			try {
 				_context.startActivity(Edit);
@@ -110,10 +109,15 @@ public class ContactAdapter extends BaseAdapter {
 		}
 	}
 
-	static class MsgListener implements View.OnClickListener {
+	class MsgListener implements View.OnClickListener {
 		@Override
 		public void onClick(View view) {
-			Log.e("42", "Button Msg");
+			Intent Msg = new Intent(_context, MessageActivity.class);
+			try {
+				_context.startActivity(Msg);
+			} catch (Exception e) {
+				Log.e("42", e.getMessage());
+			}
 		}
 	}
 
