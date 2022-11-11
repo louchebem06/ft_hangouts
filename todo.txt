@@ -7,7 +7,4 @@
 
 BONUS
 • Ayez une photo pour chaque contact.
-• Lors de la réception d'un message texte,
-    un nouveau contact est instantanément créé avec le numéro comme nom de contact.
-• C'est beau! La conception matérielle est cool!
-• Vous pouvez appeler le contact.
+• Lors de la réception d'un message texte, un nouveau contact est instantanément créé avec le numéro comme nom de contact.
