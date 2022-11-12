@@ -3,14 +3,15 @@ package com.school42.ft_hangouts;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.school42.ft_hangouts.database.ContactReaderContract.ContactEntry;
 import com.school42.ft_hangouts.database.ContactReaderDbHelper;
 
-public class Contact {
+import java.util.Locale;
+
+public class Contact implements Comparable<Contact> {
 
 	private String _id = null;
 	private String _firstName;
@@ -119,4 +120,10 @@ public class Contact {
 		db.delete(ContactEntry.TABLE_NAME, selection, selectionArgs);
 	}
 
+	@Override
+	public int compareTo(Contact contact) {
+		String a = getSurname().length() != 0 ? getSurname() : getFullName();
+		String b = contact.getSurname().length() != 0 ? contact.getSurname() : contact.getFullName();
+		return (a.toLowerCase().compareTo(b.toLowerCase()));
+	}
 }

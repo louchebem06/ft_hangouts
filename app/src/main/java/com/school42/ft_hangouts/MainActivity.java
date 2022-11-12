@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.school42.ft_hangouts.database.ContactReaderDbHelper;
 import com.school42.ft_hangouts.database.ContactReaderContract.ContactEntry;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 		ListView listContact = findViewById(R.id.listContact);
 		contactAdapter = new ContactAdapter(this, contacts);
+		Collections.sort(contacts);
 		listContact.setAdapter(contactAdapter);
 	}
 
@@ -61,11 +63,13 @@ public class MainActivity extends AppCompatActivity {
 				break ;
 			}
 		}
+		Collections.sort(contacts);
 		contactAdapter.notifyDataSetChanged();
 	}
 
 	static public void insertContact(Contact contact) {
 		contacts.add(contact);
+		Collections.sort(contacts);
 		contactAdapter.notifyDataSetChanged();
 	}
 
