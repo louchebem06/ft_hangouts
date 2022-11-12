@@ -28,7 +28,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/messageInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,7 +39,7 @@
             tools:ignore="LabelFor" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_send"

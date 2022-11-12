@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import com.school42.ft_hangouts.database.ContactReaderContract.ContactEntry;
 import com.school42.ft_hangouts.database.ContactReaderDbHelper;
 
-import java.util.Locale;
-
 public class Contact implements Comparable<Contact> {
 
 	private String _id = null;

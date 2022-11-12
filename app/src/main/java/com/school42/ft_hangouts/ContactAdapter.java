@@ -56,7 +56,7 @@ public class ContactAdapter extends BaseAdapter {
 		ImageButton edit = view.findViewById(R.id.edit);
 
 		delete.setOnClickListener(new DeleteListener(current));
-		msg.setOnClickListener(new MsgListener());
+		msg.setOnClickListener(new MsgListener(current));
 		call.setOnClickListener(new CallListener(current));
 		edit.setOnClickListener(new EditListener(current));
 
@@ -110,8 +110,13 @@ public class ContactAdapter extends BaseAdapter {
 	}
 
 	class MsgListener implements View.OnClickListener {
+		private final Contact current;
+
+		MsgListener(Contact contact) { current = contact; }
+
 		@Override
 		public void onClick(View view) {
+			MessageActivity.setContact(current);
 			Intent Msg = new Intent(_context, MessageActivity.class);
 			try {
 				_context.startActivity(Msg);
