@@ -47,6 +47,8 @@ public class MessageActivity extends AppCompatActivity {
 			_context = context;
 			_contact = contact;
 			_message = msg;
+			// TODO
+			// check if droit for send and red SMS
 		}
 
 		@Override
