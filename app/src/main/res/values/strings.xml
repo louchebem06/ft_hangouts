@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ft_hangouts</string>
     <string name="create_contact">Create contact</string>
+    <string name="todo">TODO</string>
 </resources>
