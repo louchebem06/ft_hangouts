@@ -4,20 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.PendingIntent;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
+
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -30,6 +30,8 @@ public class MessageActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_message);
 
+		ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
+
 		send = findViewById(R.id.sendButton);
 		msg = findViewById(R.id.messageInput);
 
@@ -38,28 +40,32 @@ public class MessageActivity extends AppCompatActivity {
 
 	static public void setContact(Contact contact) { _contact = contact; }
 
-	static class SendEvent implements View.OnClickListener {
-		private Context _context;
+	class SendEvent implements View.OnClickListener {
 		private Contact _contact;
 		private EditText _message;
+		private Context _context;
 
 		SendEvent(Context context, Contact contact, EditText msg) {
-			_context = context;
 			_contact = contact;
 			_message = msg;
-			// TODO
-			// check if droit for send and red SMS
+			_context = context;
 		}
 
 		@Override
 		public void onClick(View view) {
 			if (_message.getText().toString().length() == 0)
 				return ;
+			if (ActivityCompat.checkSelfPermission(_context, Manifest.permission.SEND_SMS) < 0) {
+				Snackbar.make(findViewById(R.id.MessageLayout),
+						"Please activate permission for send SMS",
+						2000).show();
+				return ;
+			}
 			String phone = _contact.getPhone();
 			String msg = _message.getText().toString();
 			_message.setText("");
 			SmsManager smsManager = SmsManager.getDefault();
-			smsManager.sendTextMessage(phone,null, msg, null, null);
+			smsManager.sendTextMessage(phone, null, msg, null, null);
 		}
 	}
 }
