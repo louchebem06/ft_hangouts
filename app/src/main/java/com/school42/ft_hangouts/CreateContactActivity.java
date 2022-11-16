@@ -50,7 +50,7 @@ public class CreateContactActivity extends AppCompatActivity {
 
 			if (!contact.isValid()) {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
-								"Please input firstname and phone",
+								R.string.errorCreateContact,
 								1000).show();
 				return ;
 			}
@@ -59,7 +59,7 @@ public class CreateContactActivity extends AppCompatActivity {
 
 			if (state) {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
-								"Contact create",
+								R.string.contactCreate,
 								2000).show();
 				firstName.setText("");
 				lastName.setText("");
@@ -69,7 +69,7 @@ public class CreateContactActivity extends AppCompatActivity {
 				finish();
 			} else {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
-									"Create contact fail",
+									R.string.createContactFail,
 									2000).show();
 			}
 		}

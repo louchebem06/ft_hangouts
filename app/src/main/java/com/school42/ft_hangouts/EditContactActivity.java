@@ -71,7 +71,7 @@ public class EditContactActivity extends AppCompatActivity {
 
 			if (!contact.isValid()) {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
-						"Please input firstname and phone",
+						R.string.errorCreateContact,
 						1000).show();
 				return ;
 			}
@@ -80,7 +80,7 @@ public class EditContactActivity extends AppCompatActivity {
 
 			if (state) {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
-						"Contact update",
+						R.string.updateContactSuccess,
 						2000).show();
 				firstName.setText("");
 				lastName.setText("");
@@ -90,7 +90,7 @@ public class EditContactActivity extends AppCompatActivity {
 				finish();
 			} else {
 				Snackbar.make(findViewById(R.id.CreateContactLayout),
-						"Update contact fail",
+						R.string.errorUpdate,
 						2000).show();
 			}
 		}

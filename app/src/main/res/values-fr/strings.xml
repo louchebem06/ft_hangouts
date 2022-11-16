@@ -8,4 +8,10 @@
     <string name="email">Adresse Email</string>
     <string name="phone">Telephone</string>
     <string name="save">Sauvegarder</string>
+    <string name="errorCreateContact">Veuiller entrer un nom et un numero de telephone</string>
+    <string name="contactCreate">Votre contact a était crée</string>
+    <string name="createContactFail">Crée le contact a echouer</string>
+    <string name="errorUpdate">Mise a jour du contact a echouer</string>
+    <string name="updateContactSuccess">Mise a jour du contact reussie</string>
+    <string name="addPermissionSendSMS">Veuiller activer la permission d\'envoie de SMS</string>
 </resources>

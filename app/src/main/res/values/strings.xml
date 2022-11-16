@@ -8,4 +8,10 @@
     <string name="email">Email</string>
     <string name="phone">Phone</string>
     <string name="save">Save</string>
+    <string name="errorCreateContact">Please input firstname and phone</string>
+    <string name="contactCreate">Contact create</string>
+    <string name="createContactFail">Create is fail</string>
+    <string name="errorUpdate">Update contact fail</string>
+    <string name="updateContactSuccess">Update contact success</string>
+    <string name="addPermissionSendSMS">Please activate permission for send SMS</string>
 </resources>

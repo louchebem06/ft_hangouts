@@ -51,7 +51,7 @@ public class MessageActivity extends AppCompatActivity {
 				return ;
 			if (ActivityCompat.checkSelfPermission(_context, Manifest.permission.SEND_SMS) < 0) {
 				Snackbar.make(findViewById(R.id.MessageLayout),
-						"Please activate permission for send SMS",
+						R.string.addPermissionSendSMS,
 						2000).show();
 				return ;
 			}
