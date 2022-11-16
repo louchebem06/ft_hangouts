@@ -1,5 +1,6 @@
-• Recevez des messages texte de contacts enregistrés.
-* Afficher les message envoyer (SEND is ok)
+* Afficher les msg stocker dans le Vector<Message>
+* add handler msg in messageActivity and add in vector
+* print Vector<Message>
 • Créez un menu permettant de changer la couleur de l'en-tête.
 • Afficher l'heure à laquelle l'application a été définie en arrière-plan lors du retour à l'application.
 • L'application fonctionne en modes paysage et portrait.
