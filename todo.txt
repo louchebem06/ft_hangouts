@@ -7,3 +7,6 @@
 BONUS
 • Ayez une photo pour chaque contact.
 • Lors de la réception d'un message texte, un nouveau contact est instantanément créé avec le numéro comme nom de contact.
+
+FIX:
+	- Contact ce multipli lors du changement de langue

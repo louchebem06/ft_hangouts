@@ -6,23 +6,33 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.provider.Telephony;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Vector;
 
 
 public class MessageActivity extends AppCompatActivity {
 
 	static private Contact _contact;
+	static private final Vector<Message> messages = new Vector<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_message);
+
+		if (messages != null)
+			messages.clear();
 
 		ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
 
@@ -30,9 +40,51 @@ public class MessageActivity extends AppCompatActivity {
 		EditText msg = findViewById(R.id.messageInput);
 
 		send.setOnClickListener(new SendEvent(getApplicationContext(), _contact, msg));
+
+		readSms();
+
+		printSMS();
+	}
+
+	private void printSMS() {
+		for (Message m : messages) {
+			Log.e("42", m.toString());
+		}
+	}
+
+	public void readSms() {
+		String number = Telephony.TextBasedSmsColumns.ADDRESS;
+		String msg = Telephony.TextBasedSmsColumns.BODY;
+		String type = Telephony.TextBasedSmsColumns.TYPE;
+
+		Cursor cursor = getContentResolver().query(
+			Telephony.Sms.CONTENT_URI,
+			new String[]{number, msg, type},
+		number + "=?",
+			new String[]{_contact.getPhone()},
+		"_id ASC"
+		);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			int numberColId = cursor.getColumnIndex(number);
+			int msgColId = cursor.getColumnIndex(msg);
+			int typeColId = cursor.getColumnIndex(type);
+
+			Message message = new Message(
+					cursor.getString(numberColId),
+					cursor.getString(msgColId),
+					cursor.getString(typeColId)
+			);
+
+			messages.add(message);
+			cursor.moveToNext();
+		}
+		cursor.close();
 	}
 
 	static public void setContact(Contact contact) { _contact = contact; }
+	static public void addMessage(Message message) { messages.add(message); }
 
 	class SendEvent implements View.OnClickListener {
 		private final Contact _contact;
@@ -60,6 +112,10 @@ public class MessageActivity extends AppCompatActivity {
 			_message.setText("");
 			SmsManager smsManager = SmsManager.getDefault();
 			smsManager.sendTextMessage(phone, null, msg, null, null);
+			addMessage(new Message(phone, msg, "2"));
+			Snackbar.make(findViewById(R.id.MessageLayout),
+					R.string.msgSendSuccess,
+					2000).show();
 		}
 	}
 }
