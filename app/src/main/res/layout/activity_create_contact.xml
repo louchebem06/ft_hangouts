@@ -23,7 +23,7 @@
             android:id="@+id/firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First name" />
+            android:hint="@string/first_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -42,7 +42,7 @@
             android:id="@+id/lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name" />
+            android:hint="@string/last_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -61,7 +61,7 @@
             android:id="@+id/surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Surname" />
+            android:hint="@string/surname" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +80,7 @@
             android:id="@+id/mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +101,7 @@
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone"
+            android:hint="@string/phone"
             android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

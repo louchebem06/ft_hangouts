@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ft_hangouts</string>
+    <string name="create_contact">Crée un contact</string>
+    <string name="send_message">Envoyer un message a vos contacts</string>
+    <string name="first_name">Nom</string>
+    <string name="last_name">Prenom</string>
+    <string name="surname">Pseudo</string>
+    <string name="email">Adresse Email</string>
+    <string name="phone">Telephone</string>
+    <string name="save">Sauvegarder</string>
+</resources>

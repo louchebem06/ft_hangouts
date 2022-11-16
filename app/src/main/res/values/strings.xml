@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">ft_hangouts</string>
     <string name="create_contact">Create contact</string>
-    <string name="todo">TODO</string>
+    <string name="send_message">Send message to contact</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last Name</string>
+    <string name="surname">Surname</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="save">Save</string>
 </resources>
