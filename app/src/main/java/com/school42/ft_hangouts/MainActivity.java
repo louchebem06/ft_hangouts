@@ -1,9 +1,13 @@
 package com.school42.ft_hangouts;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		getPermission();
+
 		createContactBtn();
 		readDB();
 
@@ -35,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
 		contactAdapter = new ContactAdapter(this, contacts);
 		Collections.sort(contacts);
 		listContact.setAdapter(contactAdapter);
+	}
+
+	private void getPermission() {
+		if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED ||
+				ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED ||
+				ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED ||
+				ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ) {
+			ActivityCompat.requestPermissions(this,
+					new String[]{Manifest.permission.READ_SMS,
+							Manifest.permission.RECEIVE_SMS,
+							Manifest.permission.SEND_SMS,
+							Manifest.permission.CALL_PHONE}, PackageManager.PERMISSION_GRANTED);
+		}
 	}
 
 	private void createContactBtn() {
