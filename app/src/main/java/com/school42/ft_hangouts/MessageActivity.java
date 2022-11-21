@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.provider.Telephony;
+import android.widget.ListView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,6 +26,7 @@ public class MessageActivity extends AppCompatActivity {
 
 	static private Contact _contact;
 	static private final Vector<Message> messages = new Vector<>();
+	static private MessageAdapter messageAdapter = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class MessageActivity extends AppCompatActivity {
 		readSms();
 
 		printSMS();
+		ListView listMessage = findViewById(R.id.listMessage);
+		messageAdapter = new MessageAdapter(this, messages);
+		listMessage.setAdapter(messageAdapter);
 	}
 
 	private void printSMS() {
