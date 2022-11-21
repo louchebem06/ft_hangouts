@@ -1,6 +1,4 @@
-* Afficher les msg stocker dans le Vector<Message>
-* add handler msg in messageActivity and add in vector
-* print Vector<Message>
+* Add handler msg in messageActivity and add in vector
 • Créez un menu permettant de changer la couleur de l'en-tête.
 • Afficher l'heure à laquelle l'application a été définie en arrière-plan lors du retour à l'application.
 • L'application fonctionne en modes paysage et portrait.
@@ -9,5 +7,5 @@ BONUS
 • Ayez une photo pour chaque contact.
 • Lors de la réception d'un message texte, un nouveau contact est instantanément créé avec le numéro comme nom de contact.
 
-FIX:
+BUG:
 	- Contact ce multipli lors du changement de langue
