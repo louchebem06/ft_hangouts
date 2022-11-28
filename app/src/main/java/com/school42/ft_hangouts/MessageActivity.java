@@ -51,6 +51,20 @@ public class MessageActivity extends AppCompatActivity {
 		listMessage.setAdapter(messageAdapter);
 	}
 
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		ActivityBackground.setResume(this);
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		ActivityBackground.setPause();
+	}
+
 	private void printSMS() {
 		for (Message m : messages) {
 			Log.e("42", m.toString());

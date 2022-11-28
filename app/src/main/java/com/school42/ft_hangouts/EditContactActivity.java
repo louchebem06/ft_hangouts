@@ -32,6 +32,20 @@ public class EditContactActivity extends AppCompatActivity {
 		saveBtn.setOnClickListener(new BtnEvent());
 	}
 
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		ActivityBackground.setResume(this);
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		ActivityBackground.setPause();
+	}
+
 	public static void setContact(Contact contact) { _contact = contact; }
 
 	private void getElements() {

@@ -46,6 +46,20 @@ public class MainActivity extends AppCompatActivity {
 		listContact.setAdapter(contactAdapter);
 	}
 
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		ActivityBackground.setResume(this);
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		ActivityBackground.setPause();
+	}
+
 	private void getPermission() {
 		if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED ||
 				ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED ||

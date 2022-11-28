@@ -3,6 +3,7 @@ package com.school42.ft_hangouts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,6 +27,20 @@ public class CreateContactActivity extends AppCompatActivity {
 		getElements();
 
 		saveBtn.setOnClickListener(new BtnEvent());
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+		ActivityBackground.setResume(this);
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		ActivityBackground.setPause();
 	}
 
 	private void getElements() {

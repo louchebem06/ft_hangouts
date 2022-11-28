@@ -1,6 +1,5 @@
 * Handler refresh msg
 • Créez un menu permettant de changer la couleur de l'en-tête.
-• Afficher l'heure à laquelle l'application a été définie en arrière-plan lors du retour à l'application.
 
 BONUS
 • Ayez une photo pour chaque contact.
