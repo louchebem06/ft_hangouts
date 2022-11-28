@@ -41,14 +41,18 @@ public class MessageActivity extends AppCompatActivity {
 		ImageButton send = findViewById(R.id.sendButton);
 		EditText msg = findViewById(R.id.messageInput);
 
-		send.setOnClickListener(new SendEvent(getApplicationContext(), _contact, msg));
-
 		readSms();
 
-		printSMS();
 		ListView listMessage = findViewById(R.id.listMessage);
 		messageAdapter = new MessageAdapter(this, messages);
 		listMessage.setAdapter(messageAdapter);
+
+		send.setOnClickListener(new SendEvent(getApplicationContext(), _contact, msg, messageAdapter));
+	}
+
+	static public void newMessage(Message message) {
+		addMessage(message);
+		messageAdapter.notifyDataSetChanged();
 	}
 
 	@Override
@@ -63,12 +67,6 @@ public class MessageActivity extends AppCompatActivity {
 	{
 		super.onPause();
 		ActivityBackground.setPause();
-	}
-
-	private void printSMS() {
-		for (Message m : messages) {
-			Log.e("42", m.toString());
-		}
 	}
 
 	public void readSms() {
@@ -103,17 +101,24 @@ public class MessageActivity extends AppCompatActivity {
 	}
 
 	static public void setContact(Contact contact) { _contact = contact; }
-	static public void addMessage(Message message) { messages.add(message); }
+	static public void addMessage(Message message) {
+		if (!(_contact.getPhone().equals(message.getNumber())))
+			return ;
+		messages.add(message);
+		messageAdapter.notifyDataSetChanged();
+	}
 
 	class SendEvent implements View.OnClickListener {
 		private final Contact _contact;
 		private final EditText _message;
 		private final Context _context;
+		private final MessageAdapter _messageAdapter;
 
-		SendEvent(Context context, Contact contact, EditText msg) {
+		SendEvent(Context context, Contact contact, EditText msg, MessageAdapter adaptater) {
 			_contact = contact;
 			_message = msg;
 			_context = context;
+			_messageAdapter = adaptater;
 		}
 
 		@Override

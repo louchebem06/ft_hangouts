@@ -1,4 +1,3 @@
-* Handler refresh msg
 • Créez un menu permettant de changer la couleur de l'en-tête.
 
 BONUS

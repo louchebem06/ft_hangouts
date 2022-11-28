@@ -32,6 +32,7 @@ public class ReceiverSms extends BroadcastReceiver {
 				contact.setLastName("");
 				contact.setMail("");
 				newContacts.add(contact);
+				MessageActivity.newMessage(new Message(phone, msg, "1"));
 			}
 		}
 		Vector<Contact> existContact = MainActivity.getContacts();
@@ -43,9 +44,8 @@ public class ReceiverSms extends BroadcastReceiver {
 					break ;
 				}
 			}
-			if (!found) {
+			if (!found)
 				newContact.insert(context);
-			}
 		}
 	}
 }
