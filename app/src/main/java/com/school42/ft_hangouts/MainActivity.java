@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void readDB() {
+		if (contacts.size() != 0)
+			return ;
 		ContactReaderDbHelper dbHelper = new ContactReaderDbHelper(getApplicationContext());
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 
