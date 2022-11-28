@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
@@ -35,7 +36,7 @@
         <activity
             android:name=".EditContactActivity"
             android:exported="false"
-            android:label="@string/viewEditContact">>
+            android:label="@string/viewEditContact">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

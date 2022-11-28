@@ -1,25 +1,24 @@
 package com.school42.ft_hangouts;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.school42.ft_hangouts.database.ContactReaderDbHelper;
 import com.school42.ft_hangouts.database.ContactReaderContract.ContactEntry;
+import com.school42.ft_hangouts.database.ContactReaderDbHelper;
 
 import java.util.Collections;
 import java.util.Vector;

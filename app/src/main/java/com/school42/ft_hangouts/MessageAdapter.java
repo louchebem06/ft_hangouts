@@ -2,6 +2,7 @@ package com.school42.ft_hangouts;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,20 +31,6 @@ public class MessageAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int i) { return 0; }
 
-	public String getContactName(String phone) {
-		Vector<Contact> contacts = MainActivity.getContacts();
-		String name = "";
-		for (Contact contact: contacts) {
-			if (contact.getPhone().equals(phone)) {
-				name = contact.getSurname();
-				if (name.length() == 0)
-					name = contact.getFullName();
-				break ;
-			}
-		}
-		return (name);
-	}
-
 	@SuppressLint({"ViewHolder", "SetTextI18n"})
 	@Override
 	public View getView(int i, View view, ViewGroup viewGroup) {
@@ -51,8 +38,8 @@ public class MessageAdapter extends BaseAdapter {
 
 		Message current = getItem(i);
 		TextView textMessage = view.findViewById(R.id.messageTextAdaptater);
-		textMessage.setText(current.getType().equals("2") ? "You: " : getContactName(current.getNumber()) + ": ");
-		textMessage.setText(textMessage.getText() + current.getMsg());
+		textMessage.setText(current.getMsg());
+		textMessage.setGravity(current.getType().equals("2") ? Gravity.RIGHT : Gravity.LEFT);
 		return (view);
 	}
 }
