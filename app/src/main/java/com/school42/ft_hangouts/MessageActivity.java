@@ -10,6 +10,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -63,6 +65,10 @@ public class MessageActivity extends AppCompatActivity {
 		ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		if (MainActivity.color.length() > 0) {
+			ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(MainActivity.color));
+			actionBar.setBackgroundDrawable(colorDrawable);
+		}
 	}
 
 	@Override

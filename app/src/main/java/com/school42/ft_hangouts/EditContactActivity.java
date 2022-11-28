@@ -3,6 +3,8 @@ package com.school42.ft_hangouts;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +38,10 @@ public class EditContactActivity extends AppCompatActivity {
 		ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		if (MainActivity.color.length() > 0) {
+			ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(MainActivity.color));
+			actionBar.setBackgroundDrawable(colorDrawable);
+		}
 	}
 
 	@Override

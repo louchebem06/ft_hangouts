@@ -1,8 +1,0 @@
-• Créez un menu permettant de changer la couleur de l'en-tête.
-
-BONUS
-• Ayez une photo pour chaque contact.
-
-BONUS ++:
-	open keyboard end message
-	beutifull message adapter

@@ -4,15 +4,21 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuItemWrapperICS;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -28,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 	static final private Vector<Contact> contacts = new Vector<>();
 	@SuppressLint("StaticFieldLeak")
 	static private ContactAdapter contactAdapter = null;
+	static public String color = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,36 @@ public class MainActivity extends AppCompatActivity {
 		contactAdapter = new ContactAdapter(this, contacts);
 		Collections.sort(contacts);
 		listContact.setAdapter(contactAdapter);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main_menu, menu);
+		return true;
+	}
+
+	@SuppressLint("NonConstantResourceId")
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.green:
+				color = "#00FF00";
+				break ;
+			case R.id.red:
+				color = "#FF0000";
+				break ;
+			case R.id.blue:
+				color = "#0000FF";
+				break ;
+			case R.id.reset:
+				color = "#6200EE";
+				break ;
+		}
+		ActionBar actionBar = getSupportActionBar();
+		ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor(color));
+		assert actionBar != null;
+		actionBar.setBackgroundDrawable(colorDrawable);
+		return (true);
 	}
 
 	@Override

@@ -17,4 +17,8 @@
     <string name="msgSendSuccess">Message envoyer</string>
     <string name="viewCreateContact">Nouveau contact</string>
     <string name="viewEditContact">Modification contact</string>
+    <string name="green">Vert</string>
+    <string name="red">Rouge</string>
+    <string name="blue">Bleu</string>
+    <string name="reset">Restaurer</string>
 </resources>
