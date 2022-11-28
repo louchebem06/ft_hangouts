@@ -1,9 +1,11 @@
 package com.school42.ft_hangouts;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -27,6 +29,18 @@ public class CreateContactActivity extends AppCompatActivity {
 		getElements();
 
 		saveBtn.setOnClickListener(new BtnEvent());
+
+		ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

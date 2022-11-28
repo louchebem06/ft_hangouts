@@ -1,5 +1,8 @@
 package com.school42.ft_hangouts;
 
+import static android.app.PendingIntent.getActivity;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -11,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -55,6 +59,18 @@ public class MessageActivity extends AppCompatActivity {
 		if (name.length() == 0)
 			name = _contact.getFullName();
 		setTitle(name);
+
+		ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	static public void newMessage(Message message) {
