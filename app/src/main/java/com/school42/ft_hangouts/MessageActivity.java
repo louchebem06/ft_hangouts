@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.provider.Telephony;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -46,8 +47,14 @@ public class MessageActivity extends AppCompatActivity {
 		ListView listMessage = findViewById(R.id.listMessage);
 		messageAdapter = new MessageAdapter(this, messages);
 		listMessage.setAdapter(messageAdapter);
+		listMessage.setSelection(messageAdapter.getCount() - 1);
 
 		send.setOnClickListener(new SendEvent(getApplicationContext(), _contact, msg, messageAdapter));
+
+		String name = _contact.getSurname();
+		if (name.length() == 0)
+			name = _contact.getFullName();
+		setTitle(name);
 	}
 
 	static public void newMessage(Message message) {

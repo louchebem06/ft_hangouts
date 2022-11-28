@@ -30,6 +30,20 @@ public class MessageAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int i) { return 0; }
 
+	public String getContactName(String phone) {
+		Vector<Contact> contacts = MainActivity.getContacts();
+		String name = "";
+		for (Contact contact: contacts) {
+			if (contact.getPhone().equals(phone)) {
+				name = contact.getSurname();
+				if (name.length() == 0)
+					name = contact.getFullName();
+				break ;
+			}
+		}
+		return (name);
+	}
+
 	@SuppressLint({"ViewHolder", "SetTextI18n"})
 	@Override
 	public View getView(int i, View view, ViewGroup viewGroup) {
@@ -37,7 +51,7 @@ public class MessageAdapter extends BaseAdapter {
 
 		Message current = getItem(i);
 		TextView textMessage = view.findViewById(R.id.messageTextAdaptater);
-		textMessage.setText(current.getType().equals("2") ? "You: " : "Other: ");
+		textMessage.setText(current.getType().equals("2") ? "You: " : getContactName(current.getNumber()) + ": ");
 		textMessage.setText(textMessage.getText() + current.getMsg());
 		return (view);
 	}

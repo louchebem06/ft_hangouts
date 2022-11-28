@@ -15,4 +15,6 @@
     <string name="updateContactSuccess">Update contact success</string>
     <string name="addPermissionSendSMS">Please activate permission for send SMS</string>
     <string name="msgSendSuccess">Send Success</string>
+    <string name="viewCreateContact">New contact</string>
+    <string name="viewEditContact">Edit contact</string>
 </resources>
