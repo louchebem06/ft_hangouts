@@ -44,7 +44,7 @@ public class ReceiverSms extends BroadcastReceiver {
 				}
 			}
 			if (!found) {
-				MainActivity.insertContact(newContact);
+				newContact.insert(context);
 			}
 		}
 	}
