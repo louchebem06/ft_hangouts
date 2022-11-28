@@ -6,12 +6,14 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -91,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
 		contacts.add(contact);
 		Collections.sort(contacts);
 		contactAdapter.notifyDataSetChanged();
+	}
+
+	static public Vector<Contact> getContacts() {
+		return (contacts);
 	}
 
 	private void readDB() {
